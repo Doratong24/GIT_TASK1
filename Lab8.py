@@ -2,20 +2,32 @@ import sys
 from PySide.QtCore import*
 from PySide.QtGui import*
 
+class Animation_area(QWidget):
+    def __init__(self):
+        QWidget.__init__(self, None)
+        self.setMinimumSize(500, 500)
+
+    def mousePressEvent(self, e):
+
+        
+
 class Simple_drawing_window(QWidget):
     def __init__(self):
         QWidget.__init__(self, None)
-        self.setWindowTitle("Simple Drawing")
 
-    def paintEvent(self, e):
-        p = QPainter()
-        p.begin(self)
+        self.anim_area = Animation_area()
 
-        p.setPen(QColor(255, 255, 255))
-        p.setBrush(QColor(0, 255, 255))
-        p.drawPolygon([QPoint(50, 200), QPoint(450, 200), QPoint(50, 400), QPoint(450, 400),])
-        
-        p.end
+        layout = QVBoxLayout()
+        layout.addWidget(self.anim_area)
+
+        label = QLabel("                                                                  Drag the mouse to draw")
+        layout.addWidget(label)
+
+        clearButton = QPushButton("Clear")
+        layout.addWidget(clearButton)
+
+        self.setLayout(layout)
+        self.setMinimumSize(530, 600)
 
 def main():
     app = QApplication(sys.argv)
