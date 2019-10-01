@@ -22,6 +22,7 @@ class Walk( Transportation ):
       return 0
 
 class Taxi( Transportation ):
+   """Taxi"""
    def __init__( self, start, end, distance ):
       Transportation.__init__( self, start, end, distance)
 
